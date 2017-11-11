@@ -155,6 +155,7 @@
 /vendor/bin/qmuxd               u:object_r:qmuxd_exec:s0
 /vendor/bin/cnd                 u:object_r:cnd_exec:s0
 /vendor/bin/ATFWD-daemon        u:object_r:atfwd_exec:s0
+/vendor/bin/easelmanagerd       u:object_r:easel_exec:s0
 # Remove after b/38447389
 /vendor/bin/esed                u:object_r:esed_exec:s0
 # Rename to android.hardware.[XXX] after b/38447431
@@ -247,6 +248,7 @@
 /data/vendor/ese(/.*)?                 u:object_r:ese_vendor_data_file:s0
 /data/vendor/ipa(/.*)?                 u:object_r:ipa_vendor_data_file:s0
 /data/vendor/sensors(/.*)?             u:object_r:sensors_vendor_data_file:s0
+/data/vendor/audio(/.*)?               u:object_r:audio_vendor_data_file:s0
 
 # input files
 /vendor/usr/idc(/.*)?                  u:object_r:idc_file:s0
