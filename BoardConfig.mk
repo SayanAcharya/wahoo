@@ -34,6 +34,7 @@ BOARD_KERNEL_CMDLINE += service_locator.enable=1
 BOARD_KERNEL_CMDLINE += swiotlb=2048
 BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware
 BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += raid=noautodetect
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -72,8 +73,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_PREBUILT_DTBOIMAGE := device/google/wahoo-kernel/dtbo.img
 BOARD_DTBOIMG_PARTITION_SIZE := 8388608
 
-ENABLE_CPUSETS := true
-
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Install odex files into the other system image
@@ -110,6 +109,7 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 CAMERA_DAEMON_NOT_PRESENT := true
 TARGET_USES_ION := true
 TARGET_USES_EASEL := true
+BOARD_USES_EASEL := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -166,3 +166,5 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
+
+BOARD_VNDK_VERSION := current

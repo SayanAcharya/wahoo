@@ -26,6 +26,7 @@ type debugfs_usb, debugfs_type, fs_type;
 type debugfs_wlan, debugfs_type, fs_type;
 type debugfs_mdp, debugfs_type, fs_type;
 type debugfs_icnss, debugfs_type, fs_type;
+type debugfs_ufs, debugfs_type, fs_type;
 
 # /proc
 type proc_wifi_dbg, fs_type;
@@ -70,8 +71,6 @@ type sensors_vendor_data_file, file_type, data_file_type;
 type audio_vendor_data_file, file_type, data_file_type;
 
 type vendor_firmware_file, vendor_file_type, file_type;
-
-type ramdump_data_file, file_type, data_file_type, mlstrustedobject;
 
 #data sysfs files
 type sysfs_data, fs_type, sysfs_type;
