@@ -433,10 +433,6 @@ on boot
 
     setprop wifi.interface wlan0
 
-    # Define TCP buffer sizes for various networks
-    # ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
-
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  8388608
@@ -510,7 +506,7 @@ service perfd /vendor/bin/perfd
 service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine.conf}
    class main
    user root
-   group root system
+   group root system diag
    socket thermal-send-client stream 0666 system system
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
@@ -771,6 +767,13 @@ on property:persist.radio.atfwd.start=true
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
+
+# b/68982314
+on property:sys.uidcpupower=*
+   write /proc/uid_cpupower/enable 1
+
+on property:sys.uidcpupower=0
+   write /proc/uid_cpupower/enable 0
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B -z \

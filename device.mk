@@ -53,7 +53,6 @@ endif
 
 PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_SHIPPING_API_LEVEL := 26
-PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -311,20 +310,27 @@ PRODUCT_PACKAGES += \
 
 # DRM HAL
 PRODUCT_PACKAGES += \
-  android.hardware.drm@1.0-impl \
-  android.hardware.drm@1.0-service \
-  android.hardware.drm@1.0-service.widevine
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.0-service.widevine \
+    android.hardware.drm@1.1-service.clearkey \
+    move_widevine_data.sh
+
+# NeuralNetworks HAL
+PRODUCT_PACKAGES += \
+    android.hardware.neuralnetworks@1.0-service-hvx
 
 # NFC packages
 PRODUCT_PACKAGES += \
-    nfc_nci.msm8998 \
     NfcNci \
     Tag \
-    android.hardware.nfc@1.0-impl \
-    android.hardware.nfc@1.0-service
+    android.hardware.nfc@1.1-service \
+
+PRODUCT_PACKAGES += \
+    SecureElement
 
 PRODUCT_COPY_FILES += \
-    device/google/wahoo/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
+    device/google/wahoo/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
 
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.1-service.wahoo
@@ -529,10 +535,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 PRODUCT_COPY_FILES += \
     device/google/wahoo/fstab.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_HARDWARE)
-
-# Provide meaningful APN configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Use the default charger mode images
 PRODUCT_PACKAGES += \
