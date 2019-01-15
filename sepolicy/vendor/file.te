@@ -42,7 +42,6 @@ type proc_wifi_dbg, fs_type, proc_type;
 type qmuxd_socket, file_type;
 type netmgrd_socket, file_type;
 type thermal_socket, file_type;
-type perfd_socket, file_type;
 
 type ims_socket, file_type;
 type ipacm_socket, file_type;
@@ -80,17 +79,13 @@ type sensors_vendor_data_file, file_type, data_file_type;
 type audio_vendor_data_file, file_type, data_file_type;
 type mediadrm_vendor_data_file, file_type, data_file_type;
 
-#data sysfs files
-type sysfs_data, fs_type, sysfs_type;
+# Tombstone RFS vendor data
+type tombstone_rfs_vendor_data_file, file_type, data_file_type;
 
 #diag sysfs files
 type sysfs_diag, fs_type, sysfs_type;
 
 type hexagon_halide_file, vendor_file_type, file_type;
-
-# input files
-type idc_file, file_type, vendor_file_type;
-type keylayout_file, file_type, vendor_file_type;
 
 # Battery Stats file
 typeattribute sysfs_batteryinfo mlstrustedobject;
@@ -99,3 +94,6 @@ typeattribute sysfs_batteryinfo mlstrustedobject;
 type proc_irq, fs_type, proc_type;
 type sysfs_irq, sysfs_type, fs_type;
 type irqbalance_socket, file_type;
+
+type sysfs_pstore, sysfs_type, fs_type;
+type ramoops_vendor_data_file, file_type, data_file_type;

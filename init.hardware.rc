@@ -160,8 +160,6 @@ on init
     write /proc/sys/vm/page-cluster 0
 
 on fs
-    # Start HW service manager early
-    start hwservicemanager
     mount_all /vendor/etc/fstab.${ro.hardware} --early
 
     mkdir /persist/data 0700 system system
@@ -341,10 +339,6 @@ on zygote-start
 
     # Create directory used by display clients
     mkdir /data/misc/display 0770 system graphics
-
-    # Create perfd related dirs
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
 
     # Setup sensors-related directories and permissions
     mkdir /persist/sensors 0775
@@ -771,12 +765,6 @@ on property:wc_transport.start_hci=true
 on property:wc_transport.start_hci=false
     stop vendor.hci_filter
 
-service vendor.hci_filter /vendor/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth diag system wakelock
-    disabled
-
 service vendor.loc_launcher /vendor/bin/loc_launcher
     class late_start
     group gps inet diag wifi
@@ -885,7 +873,3 @@ on property:sys.retaildemo.enabled=1
     setprop persist.vendor.charge.stop.level 35
     setprop persist.vendor.charge.start.level 30
 
-# system will not set the sys.retaildemo.enabled to 0 but this is used to set back to default charging
-on property:sys.retaildemo.enabled=0
-    setprop persist.vendor.charge.stop.level 100
-    setprop persist.vendor.charge.start.level 0
