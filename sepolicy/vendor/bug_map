@@ -20,6 +20,7 @@ nfc vendor_default_prop file 79617173
 priv_app vendor_default_prop file 79617173
 platform_app vendor_default_prop file 79617173
 radio vendor_default_prop file 77915129
+ramdump metadata_file dir 130250133
 surfaceflinger vendor_default_prop file 79617173
 system_app vendor_default_prop file 79617173
 system_server metadata_file dir 127946548
@@ -27,3 +28,5 @@ system_server metadata_file file 127946548
 system_server sysfs dir 124364409
 system_server vendor_default_prop file 79617173
 untrusted_app vendor_default_prop file 79617173
+vold_prepare_subdirs unlabeled file 131096543
+webview_zygote app_data_file dir 131636647
