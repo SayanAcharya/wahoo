@@ -17,6 +17,9 @@
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+# Enable userspace reboot
+$(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
+
 ifneq (,$(filter 27, $(PRODUCT_EXTRA_VNDK_VERSIONS)))
     _vndk_test := true
 endif
@@ -45,7 +48,7 @@ PRODUCT_COPY_FILES += \
 
 # Set the SVN for the targeted MR release
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.svn=37
+    ro.vendor.build.svn=40
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -332,9 +335,12 @@ PRODUCT_PACKAGES += \
 
 # Light HAL
 PRODUCT_PACKAGES += \
-    lights.$(PRODUCT_HARDWARE) \
+    lights.wahoo \
     android.hardware.light@2.0-impl:64 \
     android.hardware.light@2.0-service
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.lights=wahoo
 
 # eSE applet HALs
 PRODUCT_PACKAGES += \
